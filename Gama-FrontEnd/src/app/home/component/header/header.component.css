@@ -1,0 +1,50 @@
+.img-header {
+    width: 47%;
+    height: 67%;
+    margin: 7px 20px;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    background-color: #3670a0;
+    width: 100%;
+    justify-content: start;
+    align-items: center;
+}
+
+.sign-out {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 3px;
+}
+
+.title {
+    color: #fff;
+    margin-top: 10px;
+    width: 67%;
+}
+
+.user-name {
+    width: 18%;
+    align-items: flex-end;
+    justify-content: flex-end;
+    display: flex;
+    margin-right: 30px;
+}
+
+.user-name p,
+.user-name p i {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 3px;
+}

@@ -1,0 +1,72 @@
+<app-header></app-header>
+<div class="container project">
+    <div class="row d-flex flex-row align-items-center justify-content-between">
+        <div class="menu search d-flex flex-row align-items-center">
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            </form>
+            <i class="fas fa-th-list icon-list ml-3" (click)="showList()"></i>
+            <i class="fas fa-list icon-list ml-3" (click)="showGrid()"></i>
+        </div>
+        <div class="sort d-flex flex-row align-items-center">
+            <p class="mr-4 name-sort sort"> Sort</p>
+            <select class="form-control" (change)="onChange($event)">
+                <option value="ASC">ASC</option>
+                <option value="DES">DES</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="container " *ngIf="gridList">
+    <div class="row mt-5">
+        <div class="col-md-2 mb-2">
+            <div class="card text-center card-project d-flex justify-content-center align-items-center">
+                <i class="fas fa-folder-plus" (click)="addProject()"></i>
+            </div>
+        </div>
+        <div class="col-md-2 mb-2" *ngFor="let project of projectList">
+            <div class="card text-center card-project">
+                <div class="card-header">
+                    {{project.name}}
+                </div>
+                <div class="card-body d-flex justify-content-center align-items-center">
+                    <h5 class="card-title">{{project.description}}</h5>
+                </div>
+                <div class="card-footer text-muted d-flex flex-row align-items-center justify-content-between text-center">
+                    <i class="fas fa-location-arrow"></i>
+                    <i class="far fa-trash-alt" (click)="deleteProject(project)"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="!gridList">
+    <button type="button" class="btn btn-outline-secondary m-0 mb-3 mt-3" style="color: #fff;
+    background: #69727a;">
+        <i class="fas fa-plus mr-3"></i> Add New
+    </button>
+    <div class="row mb-3 d-flex flex-row align-items-center justify-content-between" style="margin-top: 20px;">
+        <div class="col-4">
+            <span class="ml-3 title">Project Name</span>
+        </div>
+        <div class="col-8 description">
+            <div class="row">
+                <span class="col-7 pl-3 title">Description</span>
+                <span class="col-5 title">Date</span>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3 d-flex flex-row align-items-center justify-content-between folder-project-row pro-list" *ngFor="let project of projectList" (click)="selectProject(project)" [ngStyle]="{'background': project.id == projectSelected?.id ? '#36b5e6' : ''}">
+        <div class="col-4">
+            <i class="fas fa-folder"></i>
+            <span class="ml-3">{{project.name}}</span>
+        </div>
+        <div class="col-8 description">
+            <div class="row">
+                <span class="col-7 pl-3">{{project.description}}</span>
+                <span class="col-5">{{project.createAt | date: 'MMM d, y'}}</span>
+            </div>
+        </div>
+    </div>
+</div>

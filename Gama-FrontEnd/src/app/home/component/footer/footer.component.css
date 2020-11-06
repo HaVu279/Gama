@@ -1,0 +1,45 @@
+.footerLearning {
+    background-color: white;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.tenCty p {
+    margin: 0px;
+    font-size: 12px;
+    color: #464646;
+    margin-bottom: 5px;
+}
+
+.dkBoCongThuong {
+    margin: 0px 0px 20px 0px;
+}
+
+.mtaLearning {
+    font-size: 14px;
+    color: #464646;
+    font-weight: bold;
+    margin-bottom: 45px;
+}
+.footerCol2{
+    padding-left: 45px;
+}
+.footerCol2 a p{
+    margin-bottom: 5px;
+    color: #464646;
+}
+.footerCol2 a > p :hover{
+    color: #68bf32 ;
+}
+.taiApp p{
+    margin: 0;
+    margin-left: 8px;
+}
+.taiApp{
+    display: flex;
+    align-items: center;
+    flex-direction: row; 
+}
+.footerCol3 > img{
+    margin-left: 8px;
+}

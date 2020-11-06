@@ -1,0 +1,10 @@
+::ng-deep .mat-dialog-container {
+    padding: 0 !important
+}
+.modal-dialog {
+    width: 350px;
+    margin: 30px auto;
+}
+.btn-primary:focus {
+  outline: none;
+}

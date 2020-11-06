@@ -1,0 +1,60 @@
+.menuTesting {
+    background-color: white;
+    height: 100vh;
+    padding: 30px;
+    position: fixed;
+    overflow: auto;
+    width: 20%;
+}
+
+.panel-default {
+    margin-left: 10%;
+    padding: 15px 0px;
+}
+
+.menuTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menuTitle i {
+    font-size: 16px;
+    margin-right: 7%;
+    color: rgba(113, 113, 113, 0.85);
+}
+
+.heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title, .titleSubMenu {
+    font-size: 16px;
+    margin-left: 20px;
+}
+
+.panel-body {
+    margin-left: 10%;
+    padding: 20px 0px;
+}
+
+.panel-collapse {
+    border-left: 1px solid #e8e8e8;
+    margin-left: 5px;
+}
+
+.subMenu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.active {
+    color: #2d6028;
+    font-weight: bold;
+    font-size: 16px;
+}

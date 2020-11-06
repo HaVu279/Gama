@@ -1,0 +1,51 @@
+.project {
+    margin-top: 15px;
+}
+
+.icon-list {
+    font-size: 20px;
+}
+
+.name-sort {
+    font-size: 18px;
+}
+
+.card-project {
+    height: 145px;
+}
+
+.fa-folder-plus {
+    font-size: 60px;
+}
+
+.folder-project-row {
+    padding: 8px 0px;
+    height: 36px;
+    border-radius: 4px;
+    background: #f7f7f7;
+    border: 1px solid rgba(0, 0, 0, .125);
+}
+
+i,
+select {
+    cursor: pointer;
+}
+
+.sort {
+    margin: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.title {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.folder-project-row:nth-child(2n) {
+    background: #fff;
+}
+
+.pro-list {
+    margin-bottom: 0 !important;
+}
