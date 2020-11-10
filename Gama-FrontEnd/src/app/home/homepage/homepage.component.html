@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="col-md-2 mb-2" *ngFor="let project of projectList">
-            <div class="card text-center card-project" (dblclick)="openGama()">
+            <div class="card text-center card-project" (dblclick)="openGama(project)">
                 <div class="card-header">
                     {{project.name}}
                 </div>

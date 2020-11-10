@@ -18,6 +18,9 @@ public class GamaFile {
 	@Column(name = "name", nullable = false)
     private String name;
 	
+	@Column(name = "content", nullable = false)
+    private String content;
+	
 	@Column(name = "path", nullable = false)
     private String path;
 	
@@ -28,10 +31,11 @@ public class GamaFile {
 		super();
 	}
 
-	public GamaFile(Long id, String name, String path, Long projectId) {
+	public GamaFile(Long id, String name, String content, String path, Long projectId) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.content = content;
 		this.path = path;
 		this.projectId = projectId;
 	}
@@ -50,6 +54,14 @@ public class GamaFile {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public String getPath() {

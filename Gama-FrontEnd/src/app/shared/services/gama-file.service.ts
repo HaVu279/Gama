@@ -21,13 +21,21 @@ export class GamaFileService {
   }
 
   /**
- * add new gama file
- * @param gamaFile new gama file need to add
- */
+   * add new gama file
+   * @param gamaFile new gama file need to add
+   */
   addGamaFile(gamaFile: GamaFile): Observable<GamaFile> {
     return this.http.post<GamaFile>(this.urlGamaFile, gamaFile);
   }
-  
+
+  /**
+   * edit gama file
+   * @param gamaFile new gama file need to add
+   */
+  editGamaFile(gamaFile: GamaFile): Observable<GamaFile> {
+    return this.http.put<GamaFile>(this.urlGamaFile, gamaFile);
+  }
+
   /**
    * delete project
    * @param project Project

@@ -82,7 +82,8 @@ export class HomepageComponent implements OnInit {
     this.projectSelected = project;
   }
 
-  openGama() {
+  openGama(project: Project) {
+    localStorage.setItem('projectId', `${project.id}`);
     this.router.navigate(['../gama-file'], { relativeTo: this.route });
   }
 

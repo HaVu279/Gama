@@ -20,17 +20,17 @@ export class ProjectService {
   }
 
   /**
- * add new project
- * @param project new project need to add
- */
+   * add new project
+   * @param project new project need to add
+   */
   addProject(project: Project): Observable<Project> {
     return this.http.post<Project>(this.urlProject, project);
   }
 
   /**
- * edit project
- * @param project project need to edit
- */
+   * edit project
+   * @param project project need to edit
+   */
   editProject(project: Project): Observable<Project> {
     return this.http.put<Project>(`${this.urlProject}/${project.id}`, project);
   }

@@ -1,6 +1,25 @@
 ::ng-deep .angular-editor-textarea {
     white-space: pre-line;
     color: #8220b9;
+    height: 52rem !important;
+    resize: none !important;
+    outline: none !important;
+}
+
+#style-1::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+
+#style-1::-webkit-scrollbar {
+    height: 10px;
+    width: 7px;
+    background-color: #f5f5f5;
+}
+
+#style-1::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #555;
 }
 
 .img-header {
