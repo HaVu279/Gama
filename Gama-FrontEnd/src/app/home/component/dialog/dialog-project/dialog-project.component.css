@@ -1,0 +1,26 @@
+::ng-deep .mat-dialog-container {
+    padding: 0 !important
+}
+
+.modal-template-group-detail label {
+    width: 60px;
+    /* float: left; */
+}
+
+.modal-template-group-detail input {
+    width: 318px;
+}
+
+.modal-template-group-detail .input-item {
+    display: inline-grid;
+    margin-left: 0;
+    height: 42px;
+}
+
+.modal-template-group-detail .modal-dialog {
+    width: 410px;
+}
+
+.btn-primary:focus {
+    outline: none;
+}

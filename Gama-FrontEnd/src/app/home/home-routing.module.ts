@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
+import { GamaFileComponent } from './gama-file/gama-file.component';
 
 
 const routes: Routes = [
@@ -13,8 +14,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'login',
-        pathMatch: 'full'
+        component: LoginComponent
       },
       {
         path: 'login',
@@ -27,6 +27,10 @@ const routes: Routes = [
       {
         path: 'homepage',
         component: HomepageComponent
+      },
+      {
+        path: 'gama-file',
+        component: GamaFileComponent
       },
     ]
   }

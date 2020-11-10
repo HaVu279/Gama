@@ -4,6 +4,7 @@ import { Project } from './../../shared/entity/project';
 import { Component, OnInit } from '@angular/core';
 import { DialogProjectComponent } from '../component/dialog/dialog-project/dialog-project.component';
 import { DialogConfirmComponent } from '../component/dialog/dialog-confirm/dialog-confirm.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -17,7 +18,8 @@ export class HomepageComponent implements OnInit {
   userId: Number;
   projectSelected: Project;
 
-  constructor(private projectService: ProjectService, private dialogService: DialogService) { }
+  constructor(private projectService: ProjectService, private dialogService: DialogService,
+    private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     if (localStorage.getItem('userId')) {
@@ -41,22 +43,36 @@ export class HomepageComponent implements OnInit {
   }
 
   addProject() {
-    this.dialogService.showDialog(DialogProjectComponent, { data: { project: new Project() } },
+    this.dialogService.showDialog(DialogProjectComponent, { data: { title: 'Add Project', project: new Project() } },
       (result) => {
         if (result) {
+          this.projectList.push(result);
+        }
+      })
+  }
 
+  editProject(project: Project) {
+    this.dialogService.showDialog(DialogProjectComponent, { data: { title: 'Edit Project', project: project } },
+      (result) => {
+        if (result) {
+          let index = this.projectList.findIndex(projectData => projectData.id == result.id);
+          if (index != -1) {
+            this.projectList[index] = result;
+          }
         }
       })
   }
 
   deleteProject(project: Project) {
     this.dialogService.showDialog(DialogConfirmComponent,
-      { data: { text: `Do you want to delete ${project.name}`, button1: 'Save', button2: 'Cancel' } },
+      { data: { text: `Do you want to delete project ${project.name}?`, button1: 'Save', button2: 'Cancel' } },
       (result) => {
         if (result) {
-          this.projectService.deleteProject(project.id).subscribe(() => {
-            // display toast
-            alert("sssssssssssss")
+          this.projectService.deleteProject(project.id).subscribe((data) => {
+            let index = this.projectList.findIndex(projectData => projectData.id == project.id);
+            if (index != -1) {
+              this.projectList.splice(index, 1);
+            }
           })
         }
       })
@@ -64,6 +80,10 @@ export class HomepageComponent implements OnInit {
 
   selectProject(project: Project) {
     this.projectSelected = project;
+  }
+
+  openGama() {
+    this.router.navigate(['../gama-file'], { relativeTo: this.route });
   }
 
   onChange(event) {

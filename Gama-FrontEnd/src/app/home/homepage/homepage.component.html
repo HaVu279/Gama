@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="col-md-2 mb-2" *ngFor="let project of projectList">
-            <div class="card text-center card-project">
+            <div class="card text-center card-project" (dblclick)="openGama()">
                 <div class="card-header">
                     {{project.name}}
                 </div>
@@ -33,7 +33,7 @@
                     <h5 class="card-title">{{project.description}}</h5>
                 </div>
                 <div class="card-footer text-muted d-flex flex-row align-items-center justify-content-between text-center">
-                    <i class="fas fa-location-arrow"></i>
+                    <i class="fas fa-location-arrow" (click)="editProject(project)"></i>
                     <i class="far fa-trash-alt" (click)="deleteProject(project)"></i>
                 </div>
             </div>
@@ -43,7 +43,7 @@
 
 <div class="container" *ngIf="!gridList">
     <button type="button" class="btn btn-outline-secondary m-0 mb-3 mt-3" style="color: #fff;
-    background: #69727a;">
+    background: #69727a;" (click)="addProject()">
         <i class="fas fa-plus mr-3"></i> Add New
     </button>
     <div class="row mb-3 d-flex flex-row align-items-center justify-content-between" style="margin-top: 20px;">

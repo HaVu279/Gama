@@ -1,0 +1,237 @@
+<div class="row" style="height: 89%; width: 100%;">
+    <div class="col-md-12">
+        <div style="height: 100%;">
+            <div class="header">
+                <div style="height: 100%; width: 80px;">
+                    <img src="../../../assets/images/gama-logo_white.png" class="img-header">
+                </div>
+                <h2 style="color: #fff; margin-top: unset;">
+                    GAMA-Platform
+                </h2>
+            </div>
+            <div class="top" style="display: flex; align-items: center;">
+                <div style="width: 5%;">
+                    <a href="">
+                        <img class="img-top" src="../../../assets/images/1.svg" alt="">
+                    </a>
+                </div>
+                <div style="width: 25%;">
+                    <button class="simulation">
+                            Simulation
+                        </button>
+                </div>
+                <div style="width: 45%;">
+                    <div class="div-control">
+                        <div class="div-next" style="border: none;">
+                            <a href="">
+                                <img src="../../../assets/images/3.svg" alt="" class="play-control">
+                            </a>
+                        </div>
+                        <div class="div-next">
+                            <a href="">
+                                <img src="../../../assets/images/icons8-next-page-40.png" alt="">
+                            </a>
+                        </div>
+                        <div style="display: inline-block; width: 47%;">
+                            <input style="margin-top: 7px;" type="range" id="input-range" name="points" min="0" max="10">
+                        </div>
+                        <div class="div-next">
+                            <a href="">
+                                <img src="../../../assets/images/icons8-reset-50.png" alt="">
+                            </a>
+                        </div>
+                        <div class="div-next">
+                            <a href="">
+                                <img src="../../../assets/images/icons8-close-window-100.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 25%;">
+                    <div style="width: 100%; height: 80%;">
+                        <input type="text" class="input-search" placeholder="Search">
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: row;height: 98%;
+                width: 100%; margin-top: 4px; border: solid 1px #000;">
+                <div style="height: 100%; width: 30%;">
+                    <div style="height: 65%;">
+                        <div class="nav nav-tabs">
+                            <div class="nav-item nav-item1" [ngStyle]="{'background': isOpenGraph ? '#fff' : '', 'border-bottom': isOpenGraph ? 'none' : ''}">
+                                <div style="display: flex; align-items: center;">
+                                    <img src="../../../assets/images/icons8-menu-100.png" alt="" class="model-tab ">
+                                    <label (click)="openGraph()" for="" style="margin-left: 10px; cursor: pointer;">Model / Experiment Graph</label>
+                                </div>
+                            </div>
+                            <div class="nav-item nav-item2" [ngStyle]="{'background': isOpenModel ? '#fff' : '', 'border-bottom': isOpenModel ? 'none' : ''}">
+                                <div style="display: flex; align-items: center;">
+                                    <img src="../../../assets/images/icons8-folder.svg" alt="" class="model-tab">
+                                    <label (click)="openModel()" for="" style="margin-left: 10px; cursor: pointer;">Models</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="height: 100px;" *ngIf="isOpenGraph">
+                            <div style="height: 25px; margin-top: 10px;">
+                                <div style="display: flex; justify-content: flex-end; margin-right: 10px">
+                                    <img src="../../../assets/images/icons8-next-page-80.png" alt="" class="model-tab">
+                                    <img src="../../../assets/images/icons8-expand-arrow-64.png" alt="" class="model-tab">
+                                    <img src="../../../assets/images/icons8-full-screen-96.png" alt="" class="model-tab">
+                                    <img src="../../../assets/images/icons8-plus-120.png" alt="" class="model-tab">
+                                </div>
+                            </div>
+                            <div style="margin-top: 10px">
+                                <div class="general" (click)="showControls()" style="cursor: pointer;">
+                                    <img *ngIf="isShow" src="../../../assets/images/icons8-expand-arrow-200.png" alt="" class="model-tab">
+                                    <img *ngIf="!isShow" src="../../../assets/images/icons8-more-than-100.png" alt="" class="model-tab">
+                                    <label for="" style="margin-left: 5px;">General</label>
+                                </div>
+                                <div *ngIf="isShow">
+                                    <div style="width: 100%; margin: 20px auto;">
+                                        <div class="information" *ngFor="let item of listParams">
+                                            <label for="" class="label">{{item.title}}: </label>
+                                            <!-- <input *ngIf="item.type == 'INT'" type="number" value="10" class="input-information"> -->
+                                            <input *ngIf="item.type == 'INT'" type="range" min="{{item.minValue}}" max="{{item.maxValue}}" value="5">
+                                            <span>[{{item.minValue}}..{{item.maxValue}}]</span>
+                                        </div>
+                                        <!-- <div class="information">
+                                            <label for="" class="label">the_layout: </label>
+                                            <div class="select-selected" style="width: 200px;">
+                                                <select>
+                                                      <option>Circle</option>
+                                                    </select>
+                                                <a href="javascript:void(0)" class="ic-show-select">
+                                                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+                                                        <title>ic-up</title>
+                                                        <rect width="18" height="18" fill="#585858" />
+                                                        <polygon points="8.86 11.95 4.74 6.54 12.98 6.54 8.86 11.95" fill="#fff" />
+                                                      </svg>
+                                                </a>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="height: 100px;" *ngIf="isOpenModel" style="height: 100%;">
+                            <div style="height: 25px; margin-top: 10px;">
+                                <div style="float: right;">
+                                    <button class="import-file" (click)="importMedia()">Import File</button>
+                                    <input type="file" style="display: none;" id="importedFile" multiple (change)="upload($event)">
+                                </div>
+                            </div>
+                            <div style="margin-top: 10px">
+                                <div>
+                                    <div style="width: 100%; margin: 20px auto;">
+                                        <div class="file-name" *ngFor="let file of listFiles">
+                                            <label for="">
+                                                <a href="javascript:void(0)" (click)="selectFile(file)">{{file.name}}</a>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height: 35%; border-top: solid 1px #555;">
+                        <div class="nav nav-tabs">
+                            <div class="nav-item nav-item1">
+                                <div style="display: flex; align-items: center;">
+                                    <img src="../../../assets/images/icons8-chat-100.png" alt="" class="model-tab">
+                                    <label for="" style="margin-left: 10px;">Interactive Console</label>
+                                </div>
+                            </div>
+                            <div class="nav-item nav-item2">
+                                <div style="display: flex; align-items: center;">
+                                    <img src="../../../assets/images/icons8-console-96.png" alt="" class="model-tab">
+                                    <label for="" style="margin-left: 10px;">Console</label>
+                                </div>
+                            </div>
+                        </div>
+                        gaml>
+                    </div>
+                </div>
+                <div *ngIf="isOpenGraph" style="height: 100%; width: 50%; border-left: solid 1px #555;border-right: solid 1px #555;">
+                    <div class="nav nav-tabs" style="background:  rgb(204, 204, 204); border-bottom: none;">
+                        <div class="nav-item nav-item2" style="background: #fff; width: 13%;">
+                            <div style="display: flex; align-items: center;">
+                                <img src="../../../assets/images/icons8-rounded-square-96.png" alt="" class="model-tab" style="border: solid 1px #555; border-radius: 5px;margin-top: 3px; width: 19px;">
+                                <label for="" style="margin-left: 10px;">map</label>
+                            </div>
+                        </div>
+                        <div style="width: 87%; border-bottom: solid 1px #555;">
+
+                        </div>
+                    </div>
+                    <div style="height: 25px; margin-top: 10px;">
+                        <div style="display: flex; justify-content: flex-end; margin-right: 10px; height: 100%;">
+                            <div style="width: 14%;">
+                                <a href="">
+                                    <img src="../../../assets/images/icons8-pause-button-128.png" alt="" class="model-tab">
+                                </a>
+                                <a href="">
+                                    <img src="../../../assets/images/icons8-available-updates-80.png" alt="" class="model-tab">
+                                </a>
+                            </div>
+                            <div style="width: 22%; margin-left: 20px;">
+                                <a href="">
+                                    <img src="../../../assets/images/icons8-plus-120.png" alt="" class="model-tab">
+                                </a>
+                                <a href="">
+                                    <img src="../../../assets/images/minimize-100.png" alt="" class="model-tab">
+                                </a>
+                                <a href="">
+                                    <img src="../../../assets/images/icons8-minus-80.png" alt="" class="model-tab">
+                                </a>
+                            </div>
+                            <div style="width: 15%;">
+                                <a href="">
+                                    <img src="../../../assets/images/icons8-slr-camera-64.png" alt="" class="model-tab">
+                                </a>
+                                <a href="">
+                                    <img src="../../../assets/images/icons8-full-screen-96.png" alt="" class="model-tab">
+                                </a>
+                            </div>
+                            <div style="width: 6%;">
+                                <a href="">
+                                    <img src="../../../assets/images/icons8-new-contact-64.png" alt="" class="model-tab">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height: 90%;">
+                        <img src="../../../assets/images/model.PNG" alt="" style="object-fit: contain;">
+                    </div>
+                </div>
+                <div *ngIf="isOpenModel" style="height: 100%; width: 50%; border-left: solid 1px #555;border-right: solid 1px #555;">
+                    <div class="nav nav-tabs" style="background:  rgb(204, 204, 204); border-bottom: none;">
+                        <div class="nav-item nav-item2" style="background: #fff; width: 25%;">
+                            <div style="display: flex; align-items: center;">
+                                <img src="../../../assets/images/icons8-rounded-square-96.png" alt="" class="model-tab" style="border: solid 1px #555; border-radius: 5px;margin-top: 3px; width: 19px;">
+                                <label *ngIf="fileSelected" for="" style="margin-left: 10px;">{{fileSelected.name}}</label>
+                            </div>
+                        </div>
+                        <div style="width: 75%; border-bottom: solid 1px #555;">
+
+                        </div>
+                    </div>
+                    <div style="height: 25px; margin-top: 10px;" *ngIf="fileSelected">
+                        <angular-editor class="angular-editor" [(ngModel)]="contentFile" [config]="config"></angular-editor>
+                    </div>
+                </div>
+                <div style="height: 100%; width: 20%;">
+                    <div class="nav nav-tabs" style="background:  rgb(204, 204, 204); border-bottom: none;">
+                        <div class="nav-item nav-item2" style="background: #fff; width: 30%;">
+                            <div style="display: flex; align-items: center;">
+                                <img src="../../../assets/images/icons8-rounded-square-96.png" alt="" class="model-tab" style="border: solid 1px #555; border-radius: 5px;margin-top: 3px; width: 19px;">
+                                <label for="" style="margin-left: 10px;">map</label>
+                            </div>
+                        </div>
+                        <div style="width: 100%; border-bottom: solid 1px #555;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

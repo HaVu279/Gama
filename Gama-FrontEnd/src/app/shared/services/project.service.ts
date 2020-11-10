@@ -1,4 +1,3 @@
-import { Constant } from './../common/constant';
 import { Project } from './../entity/project';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';

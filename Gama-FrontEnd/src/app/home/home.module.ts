@@ -1,3 +1,4 @@
+import { DialogConfirmComponent } from './component/dialog/dialog-confirm/dialog-confirm.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +20,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogProjectComponent } from './component/dialog/dialog-project/dialog-project.component';
+import { GamaFileComponent } from './gama-file/gama-file.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 const modules = [
     DragDropModule,
@@ -40,15 +43,17 @@ const modules = [
         LoginComponent,
         RegisterComponent,
         HomepageComponent,
-        DialogProjectComponent
+        GamaFileComponent,
     ],
     imports: [
         BrowserModule,
         HomeRoutingModule,
         FormsModule,
         HttpClientModule,
+        AngularEditorModule,
         ...modules
     ],
+    entryComponents: [DialogProjectComponent, DialogConfirmComponent],
     exports: [...modules],
 })
 export class HomeModule { }
