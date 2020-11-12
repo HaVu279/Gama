@@ -23,6 +23,9 @@ public class GamaParam {
 	@Column(name = "type_name", nullable = false)
     private String typeName;
 	
+	@Column(name = "value", nullable = false)
+    private String value;
+	
 	@Column(name = "gama_file_id")
     private Long gamaFileId;
 
@@ -69,6 +72,14 @@ public class GamaParam {
 
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
 	}
 
 	public Long getGamaFileId() {

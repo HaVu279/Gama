@@ -3,24 +3,40 @@
 }
 
 .modal-template-group-detail label {
-    width: 60px;
+    width: 88px;
     /* float: left; */
 }
 
-.modal-template-group-detail input {
+.modal-template-group-detail input,
+.modal-template-group-detail .input-item textarea {
+    border: solid 1px silver;
+    border-radius: 8px;
     width: 318px;
+    font-size: 14px;
 }
 
 .modal-template-group-detail .input-item {
     display: inline-grid;
     margin-left: 0;
-    height: 42px;
+    height: 40px;
+}
+
+.modal-template-group-detail .input-item textarea {
+    height: 60px;
+    resize: none;
 }
 
 .modal-template-group-detail .modal-dialog {
-    width: 410px;
+    width: 456px;
 }
 
-.btn-primary:focus {
+.modal-footer button {
+    align-items: center;
+    text-align: center;
+}
+
+.btn-primary:focus,
+.input-item input:focus,
+.input-item textarea:focus {
     outline: none;
 }

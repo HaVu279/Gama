@@ -1,7 +1,9 @@
+import { GamaParamService } from './../../shared/services/gama-param.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { GamaFile } from 'src/app/shared/entity/gama-file';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { GamaFileService } from 'src/app/shared/services/gama-file.service';
+import { Param } from 'src/app/shared/entity/gama-param';
 
 @Component({
   selector: 'app-gama-file',
@@ -18,8 +20,8 @@ export class GamaFileComponent implements OnInit {
   projectId: Number;
   s3: any;
   contentFile: string;
-  constructor(private gameFileService: GamaFileService) {
-    if(localStorage.getItem('projectId')) {
+  constructor(private gameFileService: GamaFileService, private gameParamService: GamaParamService) {
+    if (localStorage.getItem('projectId')) {
       this.projectId = +localStorage.getItem('projectId');
     }
   }
@@ -57,6 +59,10 @@ export class GamaFileComponent implements OnInit {
   selectFile(file: GamaFile) {
     this.fileSelected = file;
     this.contentFile = file.content;
+    this.listParams = new Array<Param>();
+    this.gameParamService.getGamaParamsByFileId(file.id).subscribe(data => {
+      this.listParams = data;
+    })
   }
 
   /**
@@ -103,8 +109,12 @@ export class GamaFileComponent implements OnInit {
   saveData() {
     this.fileSelected.content = this.contentFile;
     this.gameFileService.editGamaFile(this.fileSelected).subscribe(data => {
+      this.gameParamService.editParams(this.listParams).subscribe(dataList => {
+        console.log(dataList);
+        this.listParams = dataList;
+      })
       let index = this.listFiles.findIndex(fileData => fileData.id == data.id);
-      if(index != -1) {
+      if (index != -1) {
         this.listFiles[index] = data;
         this.selectFile(this.listFiles[index]);
       }
@@ -143,20 +153,15 @@ export class GamaFileComponent implements OnInit {
           $this.gameFileService.addGamaFile(item).subscribe(data => {
             $this.listFiles.push(data);
           });
-          for (const line of theBytes.split(/[\r\n]+/)){
-            if(!line.includes('parameter')) {
+          for (const line of theBytes.split(/[\r\n]+/)) {
+            if (!line.includes('parameter')) {
               continue;
             }
-            let param = new Param(); 
+            let param = new Param();
             let indexStart = line.indexOf('"');
             let indexEnd = line.lastIndexOf('"');
-            let indexMin = line.indexOf('min: ');
-            let indexMax = line.indexOf('max: ');
-            let end = line.indexOf(';');
-            param.title = line.substring(indexStart + 1, indexEnd);
+            param.typeName = line.substring(indexStart + 1, indexEnd);
             param.type = 'INT';
-            param.minValue = line.substring(indexMin + 5, indexMax - 1);
-            param.maxValue = line.substring(indexMax + 5, end);
 
             $this.listParams.push(param);
           }
@@ -167,13 +172,4 @@ export class GamaFileComponent implements OnInit {
 
   ngOnDestroy(): void {
   }
-}
-
-export class Param {
-  title: string;
-  name: string;
-  type: string;
-  minValue: string;
-  maxValue: string;
-  defaultValue: string;
 }

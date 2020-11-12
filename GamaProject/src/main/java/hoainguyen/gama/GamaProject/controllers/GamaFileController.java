@@ -27,7 +27,7 @@ public class GamaFileController {
 	private GamaFileRepository gamaFileRepository;
 	
 	@GetMapping("/gama-files")
-    public List<GamaFile> getGamaFilesByUserId(@RequestParam Long projectId) {
+    public List<GamaFile> getGamaFilesByProjectId(@RequestParam Long projectId) {
         return gamaFileRepository.findByProjectId(projectId);
     }
 	

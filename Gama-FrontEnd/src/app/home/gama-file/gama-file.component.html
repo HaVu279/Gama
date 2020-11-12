@@ -88,11 +88,10 @@
                                 </div>
                                 <div *ngIf="isShow">
                                     <div style="width: 100%; margin: 20px auto;">
-                                        <div class="information" *ngFor="let item of listParams">
-                                            <label for="" class="label">{{item.title}}: </label>
+                                        <div class="information" *ngFor="let item of listParams; let i = index">
+                                            <label for="" class="label">{{item.typeName}}: </label>
                                             <!-- <input *ngIf="item.type == 'INT'" type="number" value="10" class="input-information"> -->
-                                            <input *ngIf="item.type == 'INT'" type="range" min="{{item.minValue}}" max="{{item.maxValue}}" value="5">
-                                            <span>[{{item.minValue}}..{{item.maxValue}}]</span>
+                                            <input type="number" *ngIf="item.type == 'INT'" [(ngModel)]="item.value" />
                                         </div>
                                         <!-- <div class="information">
                                             <label for="" class="label">the_layout: </label>
