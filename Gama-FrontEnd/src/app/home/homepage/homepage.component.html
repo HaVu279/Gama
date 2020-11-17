@@ -3,7 +3,7 @@
     <div class="row d-flex flex-row align-items-center justify-content-between">
         <div class="menu search d-flex flex-row align-items-center">
             <form class="form-inline">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" #value (keyup.enter)="searchProject(value)">  
             </form>
             <i class="fas fa-th-list icon-list ml-3" (click)="showList()"></i>
             <i class="fas fa-list icon-list ml-3" (click)="showGrid()"></i>

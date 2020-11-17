@@ -13,10 +13,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HomepageComponent implements OnInit {
 
-  gridList: boolean = true;
+  gridList = true;
   projectList: Array<Project> = new Array<Project>();
   userId: Number;
   projectSelected: Project;
+  listProjectOrigin: Array<Project>;
 
   constructor(private projectService: ProjectService, private dialogService: DialogService,
     private router: Router, private route: ActivatedRoute) { }
@@ -39,28 +40,29 @@ export class HomepageComponent implements OnInit {
   getAllProject() {
     this.projectService.getProjectsByUserId(this.userId).subscribe(project => {
       this.projectList = project;
-    })
+      this.listProjectOrigin = this.projectList;
+    });
   }
 
   addProject() {
-    this.dialogService.showDialog(DialogProjectComponent, { data: { title: 'Add Project', project: new Project() } },
+    this.dialogService.showDialog(DialogProjectComponent, { data: { title: 'Add Project', projectData: new Project() } },
       (result) => {
         if (result) {
           this.projectList.push(result);
         }
-      })
+      });
   }
 
   editProject(project: Project) {
-    this.dialogService.showDialog(DialogProjectComponent, { data: { title: 'Edit Project', project: project } },
+    this.dialogService.showDialog(DialogProjectComponent, { data: { title: 'Edit Project', projectData: project } },
       (result) => {
         if (result) {
-          let index = this.projectList.findIndex(projectData => projectData.id == result.id);
-          if (index != -1) {
+          const index = this.projectList.findIndex(projectData => projectData.id === result.id);
+          if (index !== -1) {
             this.projectList[index] = result;
           }
         }
-      })
+      });
   }
 
   deleteProject(project: Project) {
@@ -69,13 +71,13 @@ export class HomepageComponent implements OnInit {
       (result) => {
         if (result) {
           this.projectService.deleteProject(project.id).subscribe((data) => {
-            let index = this.projectList.findIndex(projectData => projectData.id == project.id);
-            if (index != -1) {
+            const index = this.projectList.findIndex(projectData => projectData.id === project.id);
+            if (index !== -1) {
               this.projectList.splice(index, 1);
             }
-          })
+          });
         }
-      })
+      });
   }
 
   selectProject(project: Project) {
@@ -88,12 +90,19 @@ export class HomepageComponent implements OnInit {
   }
 
   onChange(event) {
-    if (event.target.value == "ASC") {
-      this.projectList.sort();
-    }
-    else {
-      this.projectList.reverse();
+    if (event.target.value === 'ASC') {
+      this.projectList = this.projectList.sort((a, b) => a.name.localeCompare(b.name));
+    } else {
+      this.projectList = this.projectList.sort((a, b) => b.name.localeCompare(a.name));
     }
   }
+
+  searchProject(event) {
+    this.projectList = this.listProjectOrigin;
+    if (event.value !== '') {
+      this.projectList = this.projectList.filter(projectData => projectData.name.includes(event.value));
+    }
+  }
+
 }
 

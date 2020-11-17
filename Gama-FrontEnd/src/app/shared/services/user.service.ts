@@ -1,4 +1,3 @@
-import { Constant } from './../common/constant';
 import { User } from './../entity/user';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -18,6 +17,10 @@ export class UserService {
 
   getAllUsers(): Observable<Array<User>> {
     return this.http.get<Array<User>>(this.urlUser);
+  }
+
+  creatUser(user: User): Observable<User> {
+    return this.http.post<User>(this.urlUser, user);
   }
 
 }
