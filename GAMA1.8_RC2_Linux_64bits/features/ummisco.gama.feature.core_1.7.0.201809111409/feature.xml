@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="ummisco.gama.feature.core"
+      label="Core plugins of GAMA"
+      version="1.7.0.201809111409"
+      provider-name="UMMISCO">
+
+   <description url="http://gama-platform.org">
+      The core of the GAMA Modeling and Simulation Platform
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <url>
+      <update label="Gama 1.7.x Update Site" url="http://updates.gama-platform.org"/>
+   </url>
+
+   <plugin
+         id="msi.gama.core"
+         download-size="2457"
+         install-size="5634"
+         version="1.7.0.201809111409"/>
+
+   <plugin
+         id="msi.gama.headless"
+         download-size="114"
+         install-size="210"
+         version="1.7.0.201809111409"
+         unpack="false"/>
+
+   <plugin
+         id="msi.gama.lang.gaml"
+         download-size="672"
+         install-size="1764"
+         version="1.7.0.201809111409"
+         unpack="false"/>
+
+   <plugin
+         id="ummisco.gama.annotations"
+         download-size="70"
+         install-size="130"
+         version="1.7.0.201809111407"
+         unpack="false"/>
+
+   <plugin
+         id="msi.gama.processor"
+         download-size="97"
+         install-size="206"
+         version="1.4.0.201809111408"
+         unpack="false"/>
+
+   <plugin
+         id="ummisco.gaml.extensions.stats"
+         download-size="684"
+         install-size="825"
+         version="1.7.0.201809111409"
+         unpack="false"/>
+
+</feature>

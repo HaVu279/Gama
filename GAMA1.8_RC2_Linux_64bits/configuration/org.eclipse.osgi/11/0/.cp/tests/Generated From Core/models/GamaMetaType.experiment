@@ -1,0 +1,12 @@
+/**
+ *  Op
+ *  Author: automatic generator
+ *  Description: Unity Test of operators belonging to category .
+ */
+
+experiment "Run Tests" type: test {	
+
+	
+}
+
+	

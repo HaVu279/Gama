@@ -1,0 +1,7 @@
+experiment "Tests for msi.gaml.architecture.simplebdi" type: test {
+
+	test "Operator new_emotion" {
+		assert get_intensity(new_emotion('joy',12.3)) = 12.3;
+	}
+
+}
