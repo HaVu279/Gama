@@ -4,6 +4,9 @@ import { GamaFile } from 'src/app/shared/entity/gama-file';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { GamaFileService } from 'src/app/shared/services/gama-file.service';
 import { Param } from 'src/app/shared/entity/gama-param';
+import { Simulation } from 'src/app/shared/entity/simulation';
+import { Output } from 'src/app/shared/entity/output';
+import { SimulationService } from 'src/app/shared/services/simulation.service';
 
 @Component({
   selector: 'app-gama-file',
@@ -20,7 +23,8 @@ export class GamaFileComponent implements OnInit {
   projectId: Number;
   s3: any;
   contentFile: string;
-  constructor(private gameFileService: GamaFileService, private gameParamService: GamaParamService) {
+  constructor(private gameFileService: GamaFileService, 
+    private gameParamService: GamaParamService, private simulationService: SimulationService) {
     if (localStorage.getItem('projectId')) {
       this.projectId = +localStorage.getItem('projectId');
     }
@@ -136,6 +140,16 @@ export class GamaFileComponent implements OnInit {
     let selectedFiles: any[] = event.target.files;
     this.listParams = new Array<Param>();
     let $this = this;
+    let simulation = new Simulation(1, "abcd", 100, "abcd", 3);
+    let outputs = new Array<Output>();
+    outputs.push(new Output(1, "main-display", 5));
+    outputs.push(new Output(2, "sub-display", 15));
+
+    simulation.outputs = outputs;
+    simulation.params = new Array<Param>();
+
+    this.simulationService.createXmlFile(simulation).subscribe();
+    console.log("fhksdjsidlk")
     // upload file
     for (const file of selectedFiles) {
       var f = file;
@@ -153,18 +167,18 @@ export class GamaFileComponent implements OnInit {
           $this.gameFileService.addGamaFile(item).subscribe(data => {
             $this.listFiles.push(data);
           });
-          for (const line of theBytes.split(/[\r\n]+/)) {
-            if (!line.includes('parameter')) {
-              continue;
-            }
-            let param = new Param();
-            let indexStart = line.indexOf('"');
-            let indexEnd = line.lastIndexOf('"');
-            param.typeName = line.substring(indexStart + 1, indexEnd);
-            param.type = 'INT';
+          // for (const line of theBytes.split(/[\r\n]+/)) {
+          //   if (!line.includes('parameter')) {
+          //     continue;
+          //   }
+          //   let param = new Param();
+          //   let indexStart = line.indexOf('"');
+          //   let indexEnd = line.lastIndexOf('"');
+          //   param.typeName = line.substring(indexStart + 1, indexEnd);
+          //   param.type = 'INT';
 
-            $this.listParams.push(param);
-          }
+          //   $this.listParams.push(param);
+          // }
         }
       }
     }
