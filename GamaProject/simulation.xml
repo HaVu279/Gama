@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Simulation id="1" sourcePath="abcd" finalStep="100" experiment="abcd" seed="3">
+    <Outputs>
+        <Output id="1" name="main-display" frameRate="5"/>
+        <Output id="2" name="sub-display" frameRate="15"/>
+    </Outputs>
+</Simulation>
